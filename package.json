@@ -2,7 +2,7 @@
   "name": "database-model-population",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vaclav-stummer/database-model-population.git"
@@ -18,9 +18,14 @@
     "npm": "6.x.x"
   },
   "scripts": {
+    "dev": "nodemon",
+    "start": "ts-node src/index.ts",
     "node-engine-check": "npx check-engine"
   },
   "devDependencies": {
-    "check-engine": "^1.10.0"
+    "check-engine": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
   }
 }
