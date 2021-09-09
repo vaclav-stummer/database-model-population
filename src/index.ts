@@ -1,3 +1,4 @@
-const test = "test";
+const test = 'test'
 
-console.log("testing...", test);
+console.log('testing...', test)
+
