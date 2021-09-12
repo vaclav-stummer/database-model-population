@@ -1,80 +1,17 @@
-const fs = require('fs')
+import databaseSchema from './data/in/database-schema.json'
 
-import databaseSchema from './database-schema.json'
+import { writeTables, createTables } from './utils'
 
-const sortedTables = [...databaseSchema].sort((a, b) => {
-  const aForeignKeysCount = a.columns.reduce((count, column) => {
-    if (column.foreign_key) count++
+const tablesToCreate = [...databaseSchema]
 
-    return count
-  }, 0)
-  const bForeignKeysCount = b.columns.reduce((count, column) => {
-    if (column.foreign_key) count++
+export type TableToCreate = typeof tablesToCreate[0]
+export type CreatedTable = typeof tablesToCreate & { order: number }[]
 
-    return count
-  }, 0)
+const createdTables: CreatedTable = []
 
-  return aForeignKeysCount - bForeignKeysCount
-})
-
-let tablesToCreate = [...sortedTables]
-const createdTables: typeof tablesToCreate & { order: number }[] = []
-
-const createTables = async () => {
-  for (const table of tablesToCreate) {
-    const hasForeignKey = table.columns.some((column) => column.foreign_key)
-
-    if (!hasForeignKey) {
-      createdTables.push({ ...table, order: createdTables.length + 1 })
-
-      console.info(`Table ${table.name} was created.`)
-    } else {
-      const foreignKeys = table.columns.reduce(
-        (acc, { foreign_key }) => (foreign_key ? [...acc, foreign_key] : acc),
-        [] as string[],
-      )
-      const createdTablesNames = createdTables.map(({ name }) => name)
-      const isCreatable = foreignKeys.every((key) => {
-        const relatedTableName = key.split('.')[0]
-
-        return createdTablesNames.includes(relatedTableName)
-      })
-
-      if (isCreatable) {
-        createdTables.push({ ...table, order: createdTables.length + 1 })
-
-        console.info(`Table ${table.name} was created.`)
-      }
-    }
-  }
-
-  const shouldRunAgain = sortedTables.length > createdTables.length
-
-  tablesToCreate = tablesToCreate.filter((itemToCreate) => {
-    const condition = !createdTables.some(
-      (createdItem) => createdItem.name === itemToCreate.name,
-    )
-
-    return condition
-  })
-
-  if (shouldRunAgain) {
-    createTables()
-  }
-}
-
+/* App execution */
 console.time('createTables')
-createTables()
+createTables(tablesToCreate, createdTables)
 console.timeEnd('createTables')
 
-const writeTables = async () => {
-  await fs.writeFile(
-    './src/created-tables.json',
-    JSON.stringify(createdTables),
-    function (error: string) {
-      if (error) throw error
-    },
-  )
-}
-
-writeTables()
+writeTables(createdTables, './src/data/out/created-tables.json')
