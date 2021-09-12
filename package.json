@@ -25,17 +25,23 @@
     "prettier:format": "npm run prettier -- --write",
     "lint": "eslint ./ --ext .ts --max-warnings 0",
     "lint:fix": "eslint ./ --ext .ts --fix",
+    "test:unit": "jest --coverage",
+    "test:unit:watch": "jest --coverage --watchAll",
     "node-engine-check": "npx check-engine"
   },
   "devDependencies": {
     "@shopify/eslint-plugin": "^40.4.0",
+    "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "check-engine": "^1.10.0",
     "eslint": "^7.32.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "jest": "^27.1.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.0",
+    "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.3"
   }
 }
