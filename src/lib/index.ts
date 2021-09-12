@@ -1,4 +1,4 @@
-const fs = require('fs')
+import * as fs from 'fs'
 
 import { Table } from '..'
 
@@ -8,7 +8,7 @@ import {
   validateCreateability,
 } from './validation'
 
-/* Tables  */
+/* Database  */
 export const getTableNameFromForeignKey = (key: string): string =>
   key.split('.')[0]
 
@@ -129,7 +129,7 @@ export const writeTables = async <T>(
   data: T[],
   path: string,
 ): Promise<void> => {
-  await fs.writeFile(path, JSON.stringify(data), (error: string) => {
+  await fs.writeFile(path, JSON.stringify(data), (error) => {
     if (error) throw error
   })
 }

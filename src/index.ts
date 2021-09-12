@@ -1,6 +1,6 @@
 import databaseSchema from './data/in/original.json'
 
-import { writeTables, getInitializeDatabase } from './utils'
+import { writeTables, getInitializeDatabase } from './lib'
 
 export type Table = typeof databaseSchema[0]
 
