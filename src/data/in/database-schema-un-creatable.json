@@ -1,0 +1,100 @@
+[
+  {
+    "name": "payment_request",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "due_date",
+        "foreign_key": null
+      },
+      {
+        "name": "created_by_user",
+        "foreign_key": "users.id"
+      }
+    ]
+  },
+  {
+    "name": "line_items",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "desciption",
+        "foreign_key": null
+      },
+      {
+        "name": "belongs_to_invoice",
+        "foreign_key": "invoices.id"
+      }
+    ]
+  },
+  {
+    "name": "users",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "fullname",
+        "foreign_key": null
+      }
+    ]
+  },
+  {
+    "name": "clients",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "company_name",
+        "foreign_key": null
+      }
+    ]
+  },
+  {
+    "name": "audit_log",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "logitem",
+        "foreign_key": null
+      }
+    ]
+  },
+  {
+    "name": "invoices",
+    "columns": [
+      {
+        "name": "id",
+        "foreign_key": null
+      },
+      {
+        "name": "amount",
+        "foreign_key": null
+      },
+      {
+        "name": "created_by_user",
+        "foreign_key": "users.id"
+      },
+      {
+        "name": "receiving_client",
+        "foreign_key": "clients.id"
+      },
+      {
+        "name": "line_item",
+        "foreign_key": "line_items.id"
+      }
+    ]
+  }
+]

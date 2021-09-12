@@ -1,17 +1,16 @@
 import databaseSchema from './data/in/database-schema.json'
 
-import { writeTables, createTables } from './utils'
+import { writeTables, getInitializeDatabase } from './utils'
 
-const tablesToCreate = [...databaseSchema]
-
-export type TableToCreate = typeof tablesToCreate[0]
-export type CreatedTable = typeof tablesToCreate & { order: number }[]
-
-const createdTables: CreatedTable = []
+export type Table = typeof databaseSchema[0]
 
 /* App execution */
-console.time('createTables')
-createTables(tablesToCreate, createdTables)
-console.timeEnd('createTables')
+console.time('getInitializeDatabase')
+const createdTables = getInitializeDatabase(databaseSchema)
+console.timeEnd('getInitializeDatabase')
 
-writeTables(createdTables, './src/data/out/created-tables.json')
+const sortedTableNames = createdTables.map(({ name }) => name)
+
+console.log('sortedTableNames', sortedTableNames)
+
+writeTables(sortedTableNames, './src/data/out/created-tables.json')
