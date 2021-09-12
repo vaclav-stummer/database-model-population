@@ -34,11 +34,15 @@ This program (library):
 ```
 
 2. Validate it, according the foreign keys. For each foreign key in given table, related table needs to be created first. If table can't be created:<br />
+
 - because of mutual dependency
 - table with the same name already exists
 - foreign is referring to table itself
-Throws an error
-3. If schema is creatable result is generated in *src/data/out/created-tables.json* as array of table names in which schema can be created.
+
+  Throws an error
+  <br />
+
+3. If schema is creatable result is generated in _src/data/out/created-tables.json_ as array of table names in which schema can be created.
 
 ## Requirements
 

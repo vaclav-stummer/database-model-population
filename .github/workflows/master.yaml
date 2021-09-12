@@ -1,0 +1,30 @@
+name: Master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Master - test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Format code
+        run: npm run prettier:format
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Linter check
+        run: npm run lint:fix
+
+      - name: Unit tests
+        run: npm run test:unit
