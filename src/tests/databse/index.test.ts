@@ -1,8 +1,8 @@
 /* Data in */
-import databaseSchema from '../../data/in/database-schema.json'
-import databaseSchemaWithMutualDependency from '../../data/in/database-schema-with-mutual-dependency.json'
-import databaseSchemaWithSameName from '../../data/in/database-schema-with-same-name.json'
-import databaseSchemaReferringToItself from '../../data/in/database-schema-referring-to-itself.json'
+import databaseSchema from '../../data/in/original.json'
+import databaseSchemaWithMutualDependency from '../../data/in/mutual-dependency.json'
+import databaseSchemaWithSameName from '../../data/in/same-name.json'
+import databaseSchemaReferringToItself from '../../data/in/referring-to-itself.json'
 
 /* Test results */
 import correctlySorted from './correctly-sorted.json'

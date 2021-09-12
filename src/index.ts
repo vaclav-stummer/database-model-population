@@ -1,4 +1,4 @@
-import databaseSchema from './data/in/database-schema.json'
+import databaseSchema from './data/in/original.json'
 
 import { writeTables, getInitializeDatabase } from './utils'
 
@@ -11,6 +11,6 @@ console.timeEnd('getInitializeDatabase')
 
 const sortedTableNames = createdTables.map(({ name }) => name)
 
-console.log('sortedTableNames', sortedTableNames)
+console.info('sortedTableNames', sortedTableNames)
 
 writeTables(sortedTableNames, './src/data/out/created-tables.json')
